@@ -1,0 +1,10 @@
+.Container {
+  height: 300px;
+  width: 300px;
+  display: grid;
+  background-color: var(--background);
+  border: 1px inset var(--border-color);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3px;
+  padding: 3px;
+}

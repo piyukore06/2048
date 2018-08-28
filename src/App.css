@@ -1,0 +1,39 @@
+:root {
+  --background: rgba(70, 130, 180, 0.8);
+  --border-color: #ccc;
+  --text-color:  #fff;
+  --field-color: rgba(0, 0, 0, 0.1);
+}
+.App {
+  text-align: center;
+}
+.Restart {
+  background-color: var(--field-color);  
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  font-size: 1em;
+  padding: 8px 16px;
+}
+.App-header {
+  background-color: var(--background);
+  height: 100px;
+  padding: 20px;
+  color: var(--text-color);
+}
+.App-header h1 {
+  margin: 0px;
+}
+.App-header p {
+  margin: 14px;
+}
+.App-title {
+  font-size: 1.5em;
+}
+.App-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+  font-size: large;
+}
+
