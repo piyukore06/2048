@@ -6,6 +6,7 @@ import { StatusImage } from './StatusImage';
 import * as Constants from './../Functions/Constants';
 import * as Helpers from './../Functions/Helpers';
 
+import HammerComponent from 'react-hammerjs';
 class Container extends Component {
   state = null;
   componentWillMount() {
@@ -97,14 +98,19 @@ class Container extends Component {
     }
     return this.state.tiles;
   }
+  handleSwipe = (event) => {
+    console.log(event)
+  }
   
   render() {
     const { tiles, status } = this.state;
     return (
       <Fragment>
-        <div className="Container">
-        {tiles.map((row, rowIndex) => <FieldRow row={row} index={rowIndex} key={rowIndex} />)}
-        </div>
+        <HammerComponent onSwipe={this.handleSwipe}>
+          <div className="Container">
+          {tiles.map((row, rowIndex) => <FieldRow row={row} index={rowIndex} key={rowIndex} />)}
+          </div>
+        </HammerComponent>
         <StatusImage name={status} />
       </Fragment>
     );
