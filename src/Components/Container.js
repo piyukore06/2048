@@ -17,7 +17,8 @@ class Container extends Component {
   setInitialState = () => {
     this.setState({
       tiles : Array(Constants.GridSize).fill(null).map(_ => Helpers.getRandomRow()),
-      status: Constants.Status.START
+      status: Constants.Status.START,
+      hightestValueTile: Constants.HighestStartingTile
     });
     document.addEventListener('keydown', this.handleKeyDown);
   }
@@ -33,28 +34,32 @@ class Container extends Component {
   // checking tiles status to output the status image  
   checkStatus = () => {
     const tiles = this.state.tiles.reduce((accumulator, currentRow) => accumulator.concat(currentRow));
-    const status = this.getStatus(tiles);
+    const hightestValueTile = Math.max(...tiles);
+    const status = this.getStatus(tiles, hightestValueTile);
     this.setState({
       ...this.state,
-      status
+      status,
+      hightestValueTile
     });
   }
-  getStatus = (tiles) => {
-    const doesProgressMoveTileExist = tiles.some(value => Constants.ProgressMoves.indexOf(value) !== -1);
+  getStatus = (tiles, hightestValueTile) => {
+    const doesProgressMoveTileExist = Constants.ProgressMoveTiles.indexOf(hightestValueTile) !== -1;
+
     const doesWinningTileExist = tiles.filter(value => value === Constants.WinningTile).length;
     const doesAlmostWinningTileExist = tiles.filter(value => value === Constants.AlmostWinningTile).length;
     const doesZeroExist = tiles.filter(value => value === 0).length;
     if (!doesZeroExist) {
       document.removeEventListener('keydown', this.handleKeyDown);
       return Constants.Status.LOST;
-    } else if (doesProgressMoveTileExist) {
+    } else if (doesProgressMoveTileExist && this.state.hightestValueTile !== hightestValueTile) {
       const randomImage = Helpers.getRandomNumber({ min: 0, max: 3 });
-      return randomImage === 3 ? null :Constants.Status.MOVE[randomImage];
+      return randomImage === 3 ? null : Constants.Status.MOVE[randomImage];
     } else if (doesAlmostWinningTileExist) {
       return Constants.Status.ALMOST_WON
     } else if (doesWinningTileExist) {
       return Constants.Status.WON
     }
+    return this.state.status;
   }
   getAlteredTiles = (key) => {
     let state;
