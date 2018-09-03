@@ -30,7 +30,6 @@ class Container extends Component {
     this.checkStatus();
   }
 
-
   // checking tiles status to output the status image  
   checkStatus = () => {
     const tiles = this.state.tiles.reduce((accumulator, currentRow) => accumulator.concat(currentRow));
@@ -58,36 +57,35 @@ class Container extends Component {
     }
   }
   getAlteredTiles = (key) => {
-    const randomRowIndex = Helpers.getRandomNumber({min: 0, max: Constants.GridSize - 1});
-    const randomNumber = Helpers.getRandomNumber({min: 1, max: 2});
+    let state;
     switch (key) {
       case 'ArrowDown':
-        return this.state.tiles
+        state = this.state.tiles
           .reduce(Helpers.transpose, [])
           .map(Helpers.reverseRow)
-          .map(Helpers.alterRow)
-          .map((row, index) => Helpers.addRandomField(row, index, randomRowIndex, randomNumber))
+          .map(Helpers.alterRow);
+        return Helpers.addRandomField(state)
           .map(Helpers.reverseRow)
           .reduce(Helpers.transpose, [])
 
       case 'ArrowUp':
-        return this.state.tiles
+        state = this.state.tiles
             .reduce(Helpers.transpose, [])
-            .map(Helpers.alterRow)
-            .map((row, index) => Helpers.addRandomField(row, index, randomRowIndex, randomNumber))
+            .map(Helpers.alterRow);
+        return Helpers.addRandomField(state)
             .reduce(Helpers.transpose, []);
 
       case 'ArrowRight':
-        return this.state.tiles
+        state = this.state.tiles
             .map(Helpers.reverseRow)
-            .map(Helpers.alterRow)
-            .map((row, index) => Helpers.addRandomField(row, index, randomRowIndex, randomNumber))
+            .map(Helpers.alterRow);
+        return Helpers.addRandomField(state)
             .map(Helpers.reverseRow)
 
       case 'ArrowLeft':
-        return this.state.tiles
-          .map(Helpers.alterRow)
-          .map((row, index) => Helpers.addRandomField(row, index, randomRowIndex, randomNumber))
+        state = this.state.tiles
+          .map(Helpers.alterRow);
+        return Helpers.addRandomField(state)
 
       default:
         break;
@@ -97,7 +95,6 @@ class Container extends Component {
   
   render() {
     const { tiles, status } = this.state;
-    console.log(tiles);
     return (
       <Fragment>
         <div className="Container">

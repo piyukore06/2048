@@ -13,7 +13,6 @@ export const alterRow = (row) => {
   if (saveRepeatingIndex.length === Constants.GridSize - 1) {
     saveRepeatingIndex = saveRepeatingIndex.filter((repeatingIndex, index) => index % 2 === 0);
   }
-  console.log(saveRepeatingIndex);
   saveRepeatingIndex.reverse().forEach(_ => {
     for (let index = 0; index <= row.length; index++) {
       if (index < Constants.GridSize - 1 && row[index] === row[index + 1]) {
@@ -29,11 +28,16 @@ export const alterRow = (row) => {
 
 // Random Field is added taking into consideration the default AlterRow Keypress ArrowLeft
 // This is to be called immidieately after alterRow to have field creation at correct place
-export const addRandomField = (row, index, randomRowIndex, randomNumber) => {
-  if (index === randomRowIndex) {
-    row[Constants.GridSize - 1] = randomNumber;
+export const addRandomField = (state) => {
+  const randomNumber = getRandomNumber({min: 1, max: 2});
+  const getLastElements = state.reduce((accumulator, row, index) => {
+    return row[Constants.GridSize - 1] === 0 ? [...accumulator, index] : accumulator;
+  }, []);
+  if (getLastElements.length) {
+    const randomRowIndex = getRandomNumber({min: 0, max: getLastElements.length - 1});
+    state[getLastElements[randomRowIndex]][Constants.GridSize - 1] = randomNumber;
   }
-  return row;
+  return state;
 }
 
 export const getRandomNumber = ({ min, max } = { min: 0, max: 2 }) => {

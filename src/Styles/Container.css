@@ -7,4 +7,5 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 3px;
   padding: 3px;
+  transition: all 0.5ms ease-in-out;
 }
