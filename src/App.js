@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to 2048</h1>
-          <p>Make use of arrow keys to play the game</p>     
+          <p>Make use of arrow keys or swipe to play the game</p>     
           <button className="Restart" onClick={this.restartGame}>Restart game</button>      
         </header>
         <div className="App-container">

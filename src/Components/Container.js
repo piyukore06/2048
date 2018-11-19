@@ -6,7 +6,6 @@ import { Status } from './Status';
 import * as Constants from './../Functions/Constants';
 import * as Helpers from './../Functions/Helpers';
 
-import HammerComponent from 'react-hammerjs';
 class Container extends Component {
   state = null;
   componentWillMount() {
@@ -36,6 +35,7 @@ class Container extends Component {
   };                                                
   
   handleTouchMove = (evt) => {
+      evt.preventDefault();
       if ( ! this.xDown || ! this.yDown ) {
           return;
       }
@@ -48,21 +48,17 @@ class Container extends Component {
   
       if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
           if ( xDiff > 0 ) {
-            console.log('left swipe')
             this.handleKeyDown({key: 'ArrowLeft'});
               /* left swipe */ 
           } else {
-            console.log('right swipe')
             this.handleKeyDown({key: 'ArrowRight'});
               /* right swipe */
           }                       
       } else {
           if ( yDiff > 0 ) {
-            console.log('up swipe')
             this.handleKeyDown({key: 'ArrowUp'});
               /* up swipe */ 
           } else { 
-            console.log('down swipe')
             this.handleKeyDown({key: 'ArrowDown'});
               /* down swipe */
           }                                                                 
@@ -153,12 +149,10 @@ class Container extends Component {
     const { tiles, status } = this.state;
     return (
       <Fragment>
-        <HammerComponent>
+        <Status name={status} />
           <div className="Container">
           {tiles.map((row, rowIndex) => <FieldRow row={row} index={rowIndex} key={rowIndex} />)}
           </div>
-        </HammerComponent>
-        <Status name={status} />
       </Fragment>
     );
   }
