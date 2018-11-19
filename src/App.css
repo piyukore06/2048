@@ -39,7 +39,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .App-container {
-    height: calc(100vh - 250px);
+  .App-header {
+    height: 130px;
   }  
 } 
