@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
   min-height: 20px;
-  border: 1px groove var(--border-color);
+  border: 1px solid var(--border-color);
   color: var(--text-color);
   display: grid;
   align-items: center;
@@ -10,6 +10,7 @@
   -moz-border-radius: 4px;
   border-radius: 3px;
   transition: all 0.5s ease-out;
+  opacity: 0.8;
 }
 
 .Elevated {
@@ -20,4 +21,14 @@
   right: 0;
   bottom: 0;
   width: 30%;
+}
+
+.Field-2048 {
+  background-color: var(--field-color-won);
+}
+.Field-1024, .Field-512, .Field-256, .Field-128 {
+  background-color: var(--field-color-almost-won);
+}
+.Field-64, .Field-32 {
+  background-color: var(--field-color-move);
 }

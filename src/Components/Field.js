@@ -1,7 +1,13 @@
 import React from 'react';
 import './../Styles/Field.css';
 
-export const Field = (props) =>
-<div className={props.value === 0 ? 'Field' : 'Field Elevated'} >
-  {props.value === 0 ? '' : props.value}
-</div>;
+export const Field = (props) => {
+  const value = props.value || '';
+  const className = 'Field-' + value;
+  console.log(className);
+  return (
+    <div className={value ? 'Field ' + className : 'Field Elevated'} >
+      {value}
+    </div>
+  );
+};

@@ -5,11 +5,17 @@ import FieldRow from './FieldRow';
 import { Status } from './Status';
 import * as Constants from './../Functions/Constants';
 import * as Helpers from './../Functions/Helpers';
+import swipe from './../Sounds/swipe.mp3'
 
 class Container extends Component {
   state = null;
+  xDown = null;                                                        
+  yDown = null;   
   componentWillMount() {
     this.setInitialState();
+  }
+  componentDidMount() {
+    this.sound.volume = '0.1';
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown);
@@ -26,8 +32,7 @@ class Container extends Component {
     document.addEventListener('touchstart', this.handleTouchStart, false);        
     document.addEventListener('touchmove', this.handleTouchMove, false);
   }
-  xDown = null;                                                        
-  yDown = null;                                                        
+                                                     
   
   handleTouchStart = (evt) => {                                         
       this.xDown = evt.touches[0].clientX;                                      
@@ -89,11 +94,12 @@ class Container extends Component {
   }
   getStatus = (tiles, hightestValueTile) => {
     const doesProgressMoveTileExist = Constants.ProgressMoveTiles.indexOf(hightestValueTile) !== -1;
+    const doesAlmostWinningTileExist = Constants.AlmostWinningTile.indexOf(hightestValueTile) !== -1;
 
     const doesWinningTileExist = tiles.filter(value => value === Constants.WinningTile).length;
-    const doesAlmostWinningTileExist = tiles.filter(value => value === Constants.AlmostWinningTile).length;
     const doesZeroExist = tiles.filter(value => value === 0).length;
     const randomImage = Helpers.getRandomNumber({ min: 0, max: 3 });
+    
     if (!doesZeroExist) {
       document.removeEventListener('keydown', this.handleKeyDown);
       document.removeEventListener('touchstart', this.handleTouchStart);        
@@ -110,6 +116,7 @@ class Container extends Component {
   }
   getAlteredTiles = (key) => {
     let state;
+    this.sound.play();
     switch (key) {
       case 'ArrowDown':
         state = this.state.tiles
@@ -149,6 +156,7 @@ class Container extends Component {
     const { tiles, status } = this.state;
     return (
       <Fragment>
+        <audio ref={(input) => {this.sound = input}} volume="0.01" src={swipe} />
         <Status name={status} />
           <div className="Container">
           {tiles.map((row, rowIndex) => <FieldRow row={row} index={rowIndex} key={rowIndex} />)}

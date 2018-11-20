@@ -1,8 +1,11 @@
 :root {
-  --background: rgba(70, 130, 180, 0.8);
-  --border-color: #ccc;
+  --background: #4F436D;
+  --border-color: #3D315B;
   --text-color:  #fff;
-  --field-color: rgba(0, 0, 0, 0.1);
+  --field-color: #3D315B;
+  --field-color-move: #79718C;
+  --field-color-almost-won: #8A79B7;
+  --field-color-won: #AE90F9;
 }
 .App {
   text-align: center;
@@ -13,6 +16,7 @@
   border: 1px solid var(--text-color);
   font-size: 1em;
   padding: 8px 16px;
+  opacity: 0.8;
 }
 .App-header {
   background-color: var(--background);
@@ -22,9 +26,11 @@
 }
 .App-header h1 {
   margin: 0px;
+  opacity: 0.8;
 }
 .App-header p {
   margin: 14px;
+  opacity: 0.8;
 }
 .App-title {
   font-size: 1.5em;
