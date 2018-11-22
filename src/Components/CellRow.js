@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './../Styles/Cell.css';
-import {Cell} from './Cell';
+import Cell from './Cell';
 
 class CellRow extends Component {
   render() {

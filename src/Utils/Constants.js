@@ -8,7 +8,7 @@ export const ProgressMoveTiles = TileProgression.slice(3, 7);
 
 
 export const Status = {
-  START: ['Hello there 👋🏼', '👋🏼 🌈', 'Heyy heyy', 'Start playin ✌🏻'],
+  START: ['Hello there 👋🏼', '👋🏼 🌈', 'Supp 😎', 'Start playin ✌🏻'],
   MOVE: ['Cool 🤓', 'Awesome 😎', 'Firee 🔥', 'Yaasss 🙌🏻'],
   ALMOST_WON: ['Wow 😍', 'Nice Move 🤩', '👉🏻🤨👈🏻', '🕺💃🏻'],
   WON: ['You made it 🥇', 'You Win 🏆', 'Yuhuu 🎉', 'This calls for Italys finest 🍾'],

@@ -12,7 +12,7 @@ export const getStatus = (defaultStatus, tiles, hightestValueTile, lastHightestV
   if (!doesZeroExist) {
     return {status: Constants.Status.LOST[randomImage], lost: true};
   } else if (doesProgressMoveTileExist && lastHightestValueTile !== hightestValueTile) {
-    return randomImage === 3 ? null : {status: Constants.Status.MOVE[randomImage]};
+    return {status: Constants.Status.MOVE[randomImage]};
   } else if (doesAlmostWinningTileExist) {
     return {status: Constants.Status.ALMOST_WON[randomImage]};
   } else if (doesWinningTileExist) {

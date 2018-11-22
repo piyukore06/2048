@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Container from './Components/Container';
+import Octocat from './Components/Octocat';
+
 class App extends Component {
   container;
   restartGame = () => {
@@ -9,9 +11,10 @@ class App extends Component {
   render() {
     return (
       <div>
+      <Octocat />
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to 2048</h1>
+          <h1 className="App-title">2048</h1>
           <p>Make use of arrow keys or swipe to play the game</p>     
           <button className="Restart" onClick={this.restartGame}>Restart game</button>      
         </header>

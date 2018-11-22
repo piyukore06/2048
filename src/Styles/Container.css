@@ -9,3 +9,11 @@
   padding: 3px;
   transition: all 0.5ms ease-in-out;
 }
+.App-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  font-size: large;
+  overflow: hidden;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './../Styles/Cell.css';
 
-export const Cell = (props) => {
+const Cell = (props) => {
   const value = props.value || '';
   const className = 'Cell-' + value;
   return (
@@ -10,3 +10,4 @@ export const Cell = (props) => {
     </div>
   );
 };
+export default Cell;
