@@ -13,7 +13,7 @@ export const alterRow = (row) => {
   if (saveRepeatingIndex.length === Constants.GridSize - 1) {
     saveRepeatingIndex = saveRepeatingIndex.filter((repeatingIndex, index) => index % 2 === 0);
   }
-  saveRepeatingIndex.reverse().forEach(_ => {
+  saveRepeatingIndex.forEach(_ => {
     for (let index = 0; index <= row.length; index++) {
       if (index < Constants.GridSize - 1 && row[index] === row[index + 1]) {
         row[index] = row[index] * 2;
@@ -47,7 +47,33 @@ export const getRandomRow = () => {
   return Array(Constants.GridSize).fill(null).map(_ => getRandomNumber());
 }
 
-  // 2d Matrix transpose method
+// 2d Matrix transpose method
 export const transpose = (prev, next) => next.map((item, i) => (prev[i] || []).concat(next[i]));
 
 export const reverseRow = row => row.reverse();
+
+export const getSwipeDirection = (touches, xDown, yDown) => {
+  const xUp = touches.clientX;                                    
+  const yUp = touches.clientY;
+
+  const xDiff = xDown - xUp;
+  const yDiff = yDown - yUp;
+
+  if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+      if ( xDiff > 0 ) {
+        return 'ArrowLeft';
+          /* left swipe */ 
+      } else {
+        return 'ArrowRight';
+          /* right swipe */
+      }                       
+  } else {
+      if ( yDiff > 0 ) {
+        return 'ArrowUp';
+          /* up swipe */ 
+      } else { 
+        return 'ArrowDown';
+          /* down swipe */
+      }                                                                 
+  }
+}

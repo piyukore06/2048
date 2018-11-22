@@ -2,7 +2,7 @@
   "name": "2048",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://piyukore06.github.io/2048",
+  "homepage": ".",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.2",

@@ -8,6 +8,7 @@ class App extends Component {
   }
   render() {
     return (
+      <div>
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to 2048</h1>
@@ -17,6 +18,10 @@ class App extends Component {
         <div className="App-container">
           <Container ref={(container) => this.container = container} />
         </div>
+      </div>
+      <footer>
+        Made with <span role="img" aria-label="love">❤️</span> by Priyanka
+      </footer>
       </div>
     );
   }
