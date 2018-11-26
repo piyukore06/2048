@@ -50,4 +50,7 @@ footer {
   .App-header {
     height: 130px;
   }  
+  footer {
+    display: none;
+  }
 } 
