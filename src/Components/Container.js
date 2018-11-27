@@ -60,11 +60,12 @@ class Container extends Component {
   };
 
   handleKeyDown = (event) => {
-    const tiles = StateHelpers.getAlteredTiles(this.state.tiles, event.key);
+    const {tiles, score} = StateHelpers.getAlteredTiles(this.state.tiles, event.key);
     this.setState({
       ...this.state,
-      tiles
+      tiles,
     });
+    this.props.updateScore(score);
     this.checkStatus();
     this.sound.play();
   }

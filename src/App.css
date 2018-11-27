@@ -21,23 +21,44 @@
 }
 .App-header {
   background-color: var(--background);
-  height: 100px;
+  height: 110px;
   padding: 20px;
   color: var(--text-color);
+  margin: 0px;
 }
 .App-header h1 {
   font-family: 'Sedgwick Ave', cursive;
-  margin: 0px;
   opacity: 0.8;
+  margin: 8px;
 }
 .App-header p {
-  margin: 14px;
+  margin: 10px;
   opacity: 0.8;
 }
 .App-title {
   font-size: 1.5em;
 }
+.Flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.Scoreboard {
+  position: relative;
+  padding: 12px 25px;
+  height: min-content;
+  color: var(--text-color);
+  background-color: var(--cell-color);
+}
 
+.Incrementor {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  right: 0px;
+  animation: move 1s 1;
+}
 footer {
   border-top: 0.1px solid gray;
   text-align: center;
@@ -55,3 +76,8 @@ footer {
     display: none;
   }
 } 
+
+@keyframes move {
+  0% {top: 40px; opacity: 1;}
+  100% {top: 0px; opacity: 0;}
+}

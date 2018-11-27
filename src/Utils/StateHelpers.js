@@ -23,38 +23,54 @@ export const getStatus = (defaultStatus, tiles, hightestValueTile, lastHightestV
 
   
 export const getAlteredTiles = (defaultTiles, key) => {
-  let state;
+  let state, localScore = 0;
   switch (key) {
     case 'ArrowDown':
       state = defaultTiles
         .reduce(Helpers.transpose, [])
         .map(Helpers.reverseRow)
-        .map(Helpers.alterRow);
-      return Helpers.addRandomField(state)
+        .map(field => {
+          const {row, score} = Helpers.alterRow(field);
+          localScore += score;
+          return row;
+        });
+      return {tiles: Helpers.addRandomField(state)
         .map(Helpers.reverseRow)
-        .reduce(Helpers.transpose, [])
+        .reduce(Helpers.transpose, []), score: localScore};
 
     case 'ArrowUp':
       state = defaultTiles
           .reduce(Helpers.transpose, [])
-          .map(Helpers.alterRow);
-      return Helpers.addRandomField(state)
-          .reduce(Helpers.transpose, []);
+          .map(field => {
+            const {row, score} = Helpers.alterRow(field);
+            localScore += score;
+            return row;
+          });
+      return {tiles: Helpers.addRandomField(state)
+          .reduce(Helpers.transpose, []), score: localScore};
 
     case 'ArrowRight':
       state = defaultTiles
           .map(Helpers.reverseRow)
-          .map(Helpers.alterRow);
-      return Helpers.addRandomField(state)
-          .map(Helpers.reverseRow)
+          .map(field => {
+            const {row, score} = Helpers.alterRow(field);
+            localScore += score;
+            return row;
+          });
+      return {tiles: Helpers.addRandomField(state)
+          .map(Helpers.reverseRow), score: localScore};
 
     case 'ArrowLeft':
       state = defaultTiles
-        .map(Helpers.alterRow);
-      return Helpers.addRandomField(state)
+        .map(field => {
+          const {row, score} = Helpers.alterRow(field);
+          localScore += score;
+          return row;
+        });
+      return {tiles: Helpers.addRandomField(state), score: localScore};
 
     default:
       break;
   }
-  return defaultTiles;
+  return {tiles: defaultTiles, score: localScore};
 }

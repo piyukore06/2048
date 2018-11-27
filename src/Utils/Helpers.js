@@ -14,17 +14,20 @@ export const alterRow = (row) => {
   if (saveRepeatingIndex.length === Constants.GridSize - 1) {
     saveRepeatingIndex = saveRepeatingIndex.filter((_, index) => index % 2 === 0);
   }
+  let score = 0;
   saveRepeatingIndex.forEach(_ => {
     for (let index = 0; index <= row.length; index++) {
       if (index < Constants.GridSize - 1 && row[index] === row[index + 1]) {
         row[index] = row[index] * 2;
+        score += row[index];
         row = [...row.slice(0, index + 1), ...row.slice(index + 2)];
         break;
       }
     }
   });
-  return removeGaps(row);
+  return {row: removeGaps(row), score};
 }
+
 
 const removeGaps = (row) => {
   const tempRow = row.filter(Boolean);
