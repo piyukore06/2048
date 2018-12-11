@@ -18,7 +18,7 @@ class App extends Component {
   restartGame = () => {
     this.container.setInitialState();
     this.setState({
-      ...state,
+      ...this.state,
       totalScore: 0
     });
   }
