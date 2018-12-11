@@ -17,6 +17,10 @@ class App extends Component {
   }
   restartGame = () => {
     this.container.setInitialState();
+    this.setState({
+      ...state,
+      totalScore: 0
+    });
   }
   getScore = (score) => {
     return (<span className="Incrementor">+{score}</span>);
